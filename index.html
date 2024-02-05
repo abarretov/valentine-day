@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="icon" href="https://i.imgur.com/5vEvrTA.png">
+  <!-- <link rel="icon" href="/favicon.png"> -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
+  <title>Invitación para mi San Valentín</title>
+  <style>
+    @keyframes heartMove {
+      0% {
+        transform: translateY(-10vh);
+      }
+      100% {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+    @-moz-keyframes heartMove {
+      0% {
+        transform: translateY(-10vh);
+      }
+      100% {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+    @-webkit-keyframes heartMove {
+      0% {
+        transform: translateY(-10vh);
+      }
+      100% {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+    @-o-keyframes heartMove {
+      0% {
+        transform: translateY(-10vh);
+      }
+      100% {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+    @-ms-keyframes heartMove {
+      0% {
+        transform: translateY(-10vh);
+      }
+      100% {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    @-moz-keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    @-webkit-keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    @-o-keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    @-ms-keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    .fa-heart {
+      z-index: 0;
+      position: absolute;
+      top: -10vh;
+      font-size: 25px;
+      animation: heartMove 10s linear;
+      -webkit-animation: heartMove 10s linear;
+      -moz-animation: heartMove 10s linear;
+      -o-animation: heartMove 10s linear;
+      -ms-animation: heartMove 10s linear;
+    }
+    .fadeIn {
+      animation: fadeIn 0.4s 0.4s 1 normal ease-in-out forwards;
+      -webkit-animation: fadeIn 0.4s 0.4s 1 normal ease-in-out forwards;
+      -moz-animation: fadeIn 0.4s 0.4s 1 normal ease-in-out forwards;
+      -o-animation: fadeIn 0.4s 0.4s 1 normal ease-in-out forwards;
+      -ms-animation: fadeIn 0.4s 0.4s 1 normal ease-in-out forwards;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Handlee', cursive;
+    }
+    html {
+      height: auto;
+    }
+    a {
+      text-decoration: none;
+    }
+    .wrapper {
+      position: relative;
+      margin: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 1150px;
+      background-color: #444242;
+      overflow-x: hidden;
+    }
+    .image__container {
+      position: relative;
+      width: 100%;
+      max-width: 326px;
+      padding: 16px;
+      border: 2px solid #EBAFC6;
+      border-radius: 4px;
+    }
+    .image {
+      border-radius: 4px;
+      width: 100%;
+      object-fit: cover;
+    }
+    .text {
+      margin: 32px 18px 64px;
+      color: #FCFFFB;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+    .highlight {
+      color: #EBAFC6;
+    }
+    .button {
+      position: absolute;
+      bottom: 0;
+      border: none;
+      border-radius: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 40px;
+      width: 80px;
+      appearance: none;
+      transition: all 0.6s ease-in-out;
+      cursor: pointer;
+    }
+    .button.accepted {
+      left: 50%;
+      transform: translateX(-90px);
+      background-color: #EBAFC6;
+    }
+    .button.accepted.extended {
+      width: 260px;
+      border: 2px solid #FCFFFB;
+      transform: translateX(-50%);
+    }
+    .button.refused {
+      right: 50%;
+      transform: translateX(90px);
+      background-color: #FCFFFB;
+    }
+    .button__text {
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: none;
+      letter-spacing: 2px;
+    }
+    .button__text.accepted {
+      color: #FCFFFB;
+    }
+    .button__text.refused {
+      color: #444242;
+    }
+    .button__icon {
+      display: none;
+      opacity: 0;
+      margin-right: 12px;
+      margin-bottom: 5px;
+      filter: drop-shadow(1px 1px 2px #444242);
+    }
+    .player {
+      position: absolute;
+      visibility: hidden;
+      height: 0;
+      width: 0;
+    }
+    .player__button {
+      visibility: visible;
+      opacity: 1;
+      border: 0;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background-color: transparent;
+      cursor: pointer;
+      transition: all 0.4s ease-in-out;
+    }
+    .hidden {
+      visibility: hidden;
+      opacity: 0;
+    }
+    @media screen and (width >= 1280px) {
+      html {
+        height: 100%;
+      }
+      .wrapper {
+        margin: auto;
+        flex-direction: row;
+        height: 100%;
+        overflow: hidden;
+      }
+      .text {
+        margin: 0 0 64px 32px;
+        height: auto;
+      }
+      .button.accepted, .button.accepted.extended, .button.refused {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body class="wrapper">
+
+  <!-- image -->
+  <div class="image__container">
+    <img src="https://i.imgur.com/7boivog.gif" alt="invitación de San Valentín" class="image">
+    <!-- <img src="/san-valentine.gif" alt="invitación de San Valentín" class="image"> -->
+    <button class="player__button play">
+      <img src="https://i.imgur.com/UnpZ9fC.png" alt="botón de iniciar reproducción">
+      <!-- <img src="/play.png" alt="botón de iniciar reproducción"> -->
+    </button>
+    <button class="player__button pause">
+      <img src="https://i.imgur.com/IBFjHf5.png" alt="botón de iniciar reproducción">
+      <!-- <img src="/pause.png" alt="botón de pausar reproducción"> -->
+    </button>
+  </div>
+
+  <!-- text -->
+  <p class="text">
+    Desde hace un tiempo, he estado esperando con ilusión la llegada de este día...
+    <br>
+    <br>
+    Si bien es cierto que hemos compartido momentos muy lindos y especiales en el pasado, siento que aún no he logrado demostrarte o expresar a plenitud el impacto que has tenido en mi corazón. <b class="highlight">Tu sonrisa, tu mirada y tu esencia única,</b> han logrado construir un fuerte inexpugnable dentro de mí, un refugio que protege un jardín de emociones que poco a poco va expandiéndose y haciendo raíces con cada día que pasa.
+    <br>
+    <br>
+    Es por esta razón, y por un sinfín de motivos aún más hermosos, que anhelo compartir contigo una velada especial este próximo <b class="highlight">14 de febrero.</b> Por tanto, me preguntaba si...
+    <br>
+    <br>
+    <b>¿Quieres ser mi San Valentín?</b>
+  </p>
+
+  <!-- buttons -->
+  <a class="button accepted" href="#">
+    <!-- <img src="/hearts.png" alt="icono de corazones" class="button__icon"> -->
+    <img src="https://i.imgur.com/2f0NNEf.png" alt="icono de corazones" class="button__icon">
+    <span class="button__text accepted">Si</span>
+  </a>
+  <button role="button" class="button refused">
+    <span class="button__text refused">No</span>
+  </button>
+
+  <!-- audio -->
+  <audio controls autoplay class="player">
+    <source src="/chachacha.ogg" type="audio/ogg">
+    <source src="/chachacha.mp3" type="audio/mpeg">
+    Your browser does not support the audio element
+  </audio>
+
+  <!-- scripts -->
+  <script defer>
+
+    // get the elements
+    const body = document.querySelector("body")
+    const wrapper = document.querySelector('.wrapper')
+    const noBtn = document.querySelector('.button.refused')
+    const yesBtn = document.querySelector('.button.accepted')
+    const yesText = document.querySelector('.button__text.accepted')
+    const iconBtn = document.querySelector('.button__icon')
+    const player = document.querySelector('.player')
+    const playBtn = document.querySelector('.player__button.play')
+    const pauseBtn = document.querySelector('.player__button.pause')
+
+    window.onload = () => {
+
+      // when the entire web page has been loaded
+      if (window.innerWidth >= 1280) {
+        const image = document.querySelector(".image__container")
+        const imageRect = image.getBoundingClientRect()
+        const noBtnRect = noBtn.getBoundingClientRect()
+        const top = imageRect.bottom - 60
+        const leftYesBtn = imageRect.right - imageRect.left + 32
+        const leftNoBtn = window.innerWidth - imageRect.left - noBtnRect.width - imageRect.right - 132
+        yesBtn.style.top =  top + 'px'
+        yesBtn.style.left = leftYesBtn + 'px'
+        noBtn.style.top =  top + 'px'
+        noBtn.style.right = leftNoBtn + 'px'
+      }
+
+      pauseBtn.classList.add('hidden')
+
+      // to play the music
+      playBtn.addEventListener('click', () => {
+
+        // wait for the music to start
+        console.log('playing...')
+        toggle = true
+        player.play().then(() => {
+          playBtn.classList.add('hidden')
+          pauseBtn.classList.remove('hidden')
+        })
+      })
+
+      // to pasue the music
+      pauseBtn.addEventListener('click', () => {
+
+        // wait for the music to start
+        console.log('pausing...')
+        player.pause()
+        pauseBtn.classList.add('hidden')
+        playBtn.classList.remove('hidden')
+      })
+    }
+
+    window.onresize = () => {
+
+      // when the web page has been resized
+      if (window.innerWidth >= 1280) {
+        yesBtn.style.bottom = 'unset'
+        noBtn.style.bottom = 'unset'
+        yesBtn.style.transform = 'none'
+        noBtn.style.transform = 'none'
+        const image = document.querySelector(".image__container")
+        const imageRect = image.getBoundingClientRect()
+        const noBtnRect = noBtn.getBoundingClientRect()
+        const top = imageRect.bottom - 60
+        const leftYesBtn = imageRect.right - imageRect.left + 32
+        const leftNoBtn = window.innerWidth - imageRect.left - noBtnRect.width - imageRect.right - 132
+        yesBtn.style.top =  top + 'px'
+        yesBtn.style.left = leftYesBtn + 'px'
+        noBtn.style.top =  top + 'px'
+        noBtn.style.right = leftNoBtn + 'px'
+      } else {
+        yesBtn.style.top = 'unset'
+        noBtn.style.top = 'unset'
+        yesBtn.style.bottom = 0
+        yesBtn.style.left = '50%'
+        yesBtn.style.transform = 'translateX(-90px)'
+        noBtn.style.bottom = 0
+        noBtn.style.right = '50%'
+        noBtn.style.transform = 'translateX(90px)'
+      }
+    }
+
+    // to create the hearts
+    function createHeart() {
+      const heart = document.createElement("div")
+      heart.className = "fas fa-heart"
+      heart.style.left = (Math.random() * 100) + "vw"
+      heart.style.color = Math.random() >= 0.5 ? "#FCFFFB" : "#EBAFC6"
+      body.appendChild(heart)
+    }
+
+    setInterval(createHeart, 1000)
+    setInterval(function name(params) {
+      var heartArr = document.querySelectorAll(".fa-heart")
+      if (heartArr.length > 200) {
+        heartArr[0].remove()
+      }
+    }, 100)
+
+    // to move element
+    const moveElement = () => {
+
+      // get values
+      const wrapperRect = wrapper.getBoundingClientRect()
+      const noBtnRect = noBtn.getBoundingClientRect()
+      const maxX = wrapperRect.width - noBtnRect.width
+      const maxY = wrapperRect.height - noBtnRect.height
+      
+      // calculating random values
+      const randomX = Math.floor(Math.random() * maxX)
+      const randomY = Math.floor(Math.random() * maxY)
+
+      // assigning values
+      noBtn.style.transform = 'none'
+      noBtn.style.right = randomX + 'px'
+      noBtn.style.top = randomY + 'px'
+    }
+
+    const confirmDate = (e) => {
+      if (yesBtn.getAttribute('href') === '#') {
+        e.preventDefault()
+      }
+      yesText.style.display = 'none'
+      yesText.style.opacity = 0
+      yesText.innerHTML = 'Confirmar asistencia'
+      noBtn.style.display = 'none'
+      yesBtn.classList.add('extended')
+      iconBtn.style.display = 'block'
+      yesText.style.display = 'block'
+      iconBtn.classList.add('fadeIn')
+      yesText.classList.add('fadeIn')
+      yesBtn.setAttribute('href', 'https://api.whatsapp.com/send/?phone=%2B584123218353&amp;text&amp;type=phone_number&amp;app_absent=0')
+    }
+
+    // attach event
+    noBtn.addEventListener('mouseover', () => moveElement())
+    noBtn.addEventListener('click', () => moveElement())
+    yesBtn.addEventListener('click', (e) => confirmDate(e))
+
+  </script>
+  <script src="https://kit.fontawesome.com/4f3ce16e3e.js" crossorigin="anonymous"></script>
+</body>
+</html>
